@@ -1,0 +1,34 @@
+-- -*- mode: SQL; -*-
+-- Yazik sqlite schema.
+-- Copyright (c) 2018 Acke, see LICENSE file for allowable usage.
+
+CREATE TABLE word (
+	wordid		INTEGER PRIMARY KEY,
+        word		TEXT UNIQUE COLLATE NOCASE
+        );
+
+CREATE TABLE author (
+	authorid	INTEGER PRIMARY KEY,
+        name		TEXT UNIQUE COLLATE NOCASE
+        );
+
+CREATE TABLE book (
+	bookid		INTEGER PRIMARY KEY,
+        title		TEXT COLLATE NOCASE,
+        authorid	INTEGER REFERENCES author,
+        whenadded	INTEGER
+        );
+
+CREATE TABLE seen (
+	seenid		INTEGER PRIMARY KEY,
+        wordid		INTEGER REFERENCES word NOT NULL,
+        bookid		INTEGER REFERENCES book,
+        page		INTEGER,
+        whenseen	INTEGER
+        );
+
+CREATE TABLE definition (
+	definitionid	INTEGER PRIMARY KEY,
+        wordid		INTEGER REFERENCES word NOT NULL,
+        definition	TEXT COLLATE NOCASE
+        );

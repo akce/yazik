@@ -1,0 +1,10 @@
+#! /usr/bin/env python3
+#
+# Yazik run script.
+#
+# Copyright (c) 2018 Acke, see LICENSE file for allowable usage.
+#
+
+import yazik.cli as cli
+
+cli.main()
